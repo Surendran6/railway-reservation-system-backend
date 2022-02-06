@@ -27,7 +27,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/private", privateRouter);
 
 app.get("/", (req, res) => {
-  res.send("password-reset- Server is up and Running");
+  res.send("railway-reservation-system-backend Server is up and Running");
 });
 const server = app.listen(PORT, () =>
   console.log(`Server running on port ...${PORT}`)
