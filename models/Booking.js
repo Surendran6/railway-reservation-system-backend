@@ -18,14 +18,14 @@ const BookingSchema = new mongoose.Schema({
     required: true,
   },
   berth: {
-    type: String,   
+    type: String,
   },
   seat: {
-    type: Number, 
+    type: Number,
   },
   ticketno: {
     type: Number,
-    default: Math.floor(Math.random() * 10000 + 1),
+    default: Math.floor(Math.random() * 100000 + 1),
   },
   train: {
     type: Number,

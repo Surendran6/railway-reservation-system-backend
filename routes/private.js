@@ -11,9 +11,9 @@ const {
   Updatebooking
 } = require("../controller/ticket");
 const { getBerthDetails, UpdateBerth } = require("../controller/berth");
-const { protect } = require("../middleware/auth");
 
-router.post("/ticket",protect,  ticketbooking);
+
+router.post("/ticket",  ticketbooking);
 router.get("/tickets",  showBookings);
 router.put("/Updatebooking/:id", Updatebooking);
 router.get("/getUserTickets/:id", getUserTickets);

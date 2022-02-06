@@ -57,7 +57,7 @@ exports.Updatebooking = async (req, res) => {
 
   const updateBook = await Booking.findById(req.params.id);
 
-  if (updateBook) {   
+  if (updateBook) {
     updateBook.userId = userId;
     updateBook.bookingName = bookingName;
     updateBook.age = age;
@@ -108,7 +108,7 @@ exports.showBookings = async (req, res) => {
 };
 exports.getUserTickets = async (req, res) => {
   try {
-    let tickets = await Booking.find({userId: req.params.id},function (err, result) {
+    let tickets = await Booking.find({ userId: req.params.id }, function (err, result) {
       if (err) {
         throw err;
       }

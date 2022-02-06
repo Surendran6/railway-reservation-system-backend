@@ -89,7 +89,7 @@ exports.forgotpassword = async (req, res, next) => {
     const resetToken = user.getResetPasswordToken();
     await user.save();
 
-    const resetURL = `${process.env.Client_URL}/MERN-LoginSystem/resetpassword/${resetToken}`;
+    const resetURL = `${process.env.Client_URL}/resetpassword/${resetToken}`;
 
     const message = `
                 <h1> You have requested for password reset </h1>
