@@ -40,6 +40,42 @@ exports.ticketbooking = async (req, res) => {
     });
   }
 };
+
+exports.Updatebooking = async (req, res) => {
+  const {
+    userId,
+    bookingName,
+    age,
+    gender,
+    berth,
+    seat,
+    ticketno,
+    train,
+    pnr,
+    date,
+  } = req.body?.ticket;
+
+  const updateBook = await Booking.findById(req.params.id);
+
+  if (updateBook) {   
+    updateBook.userId = userId;
+    updateBook.bookingName = bookingName;
+    updateBook.age = age;
+    updateBook.gender = gender;
+    updateBook.berth = berth;
+    updateBook.seat = seat;
+    updateBook.ticketno = ticketno;
+    updateBook.train = train;
+    updateBook.pnr = pnr;
+    updateBook.date = date;
+    const updatedetails = await updateBook.save();
+    res.json(updatedetails);
+  } else {
+    res.status(404);
+    throw new Error("Note not found");
+  }
+};
+
 exports.Deleteticket = async (req, res) => {
   const booking = await Booking.findById(req.params.id);
 
@@ -108,7 +144,7 @@ exports.getSeatNo = async (req, res) => {
 };
 
 exports.postSeatNo = async (req, res) => {
-  const { seatNo } = req.body;
+  const { seatNo } = req.body.seatDetails;
   try {
     const seat = await SeatNo.create({
       seatNo,

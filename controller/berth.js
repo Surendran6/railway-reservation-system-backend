@@ -20,7 +20,7 @@ exports.getBerthDetails = async (req, res) => {
 };
 
 exports.UpdateBerth = async (req, res) => {
-  const { name, total, available } = req.body;
+  const { name, total, available } = req.body.berthAvailble;
 
   const berth = await Berth.findById(req.params.id);
 
