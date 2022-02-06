@@ -1,13 +1,24 @@
+const { request } = require("express");
 const Booking = require("../models/Booking");
 const SeatNo = require("../models/SeatNo");
 
 exports.ticketbooking = async (req, res) => {
-  const { userid, name, age, gender, berth, seat, ticketno, train, pnr, date } =
-    req.body;
+  const {
+    userId,
+    bookingName,
+    age,
+    gender,
+    berth,
+    seat,
+    ticketno,
+    train,
+    pnr,
+    date,
+  } = req.body?.bookingDetails;
   try {
     const ticket = await Booking.create({
-      userid,
-      name,
+      userId,
+      bookingName,
       age,
       gender,
       berth,
@@ -59,7 +70,24 @@ exports.showBookings = async (req, res) => {
     });
   }
 };
-
+exports.getUserTickets = async (req, res) => {
+  try {
+    let tickets = await Booking.find({userId: req.params.id},function (err, result) {
+      if (err) {
+        throw err;
+      }
+    });
+    return res.status(200).json({
+      success: true,
+      tickets,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      success: false,
+      error,
+    });
+  }
+};
 exports.getSeatNo = async (req, res) => {
   try {
     let seats = await SeatNo.find(function (err, result) {
@@ -69,7 +97,7 @@ exports.getSeatNo = async (req, res) => {
     });
     return res.status(200).json({
       success: true,
-      seats,
+      seat: seats[0],
     });
   } catch (error) {
     return res.status(400).json({
@@ -99,6 +127,7 @@ exports.postSeatNo = async (req, res) => {
 };
 
 exports.DeleteSeat = async (req, res) => {
+  console.log(req.params.id);
   const seat = await SeatNo.findById(req.params.id);
 
   if (seat) {

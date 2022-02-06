@@ -2,14 +2,14 @@ const Berth = require("../models/berth");
 
 exports.getBerthDetails = async (req, res) => {
   try {
-    let seats = await Berth.find(function (err, result) {
+    let berths = await Berth.find(function (err, result) {
       if (err) {
         throw err;
       }
     });
     return res.status(200).json({
       success: true,
-      seats,
+      berths,
     });
   } catch (error) {
     return res.status(400).json({

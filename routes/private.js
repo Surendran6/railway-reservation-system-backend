@@ -7,17 +7,19 @@ const {
   postSeatNo,
   DeleteSeat,
   Deleteticket,
+  getUserTickets,
 } = require("../controller/ticket");
 const { getBerthDetails, UpdateBerth } = require("../controller/berth");
 const { protect } = require("../middleware/auth");
 
-router.post("/ticket", protect, ticketbooking);
-router.get("/tickets", protect, showBookings);
-router.get("/seats", protect, getSeatNo);
-router.post("/seat", protect, postSeatNo);
-router.delete("/seatRemove/:id", protect, DeleteSeat);
-router.delete("/bookingRemove/:id", protect, Deleteticket);
-router.get("/getBerthDetails", protect, getBerthDetails);
-router.put("/UpdateBerth/:id", protect, UpdateBerth);
+router.post("/ticket",protect,  ticketbooking);
+router.get("/tickets",  showBookings);
+router.get("/getUserTickets/:id", getUserTickets);
+router.get("/seats", getSeatNo);
+router.post("/seat",  postSeatNo);
+router.delete("/seatRemove/:id",  DeleteSeat);
+router.delete("/bookingRemove/:id",  Deleteticket);
+router.get("/getBerthDetails",  getBerthDetails);
+router.put("/UpdateBerth/:id",  UpdateBerth);
 
 module.exports = router;
